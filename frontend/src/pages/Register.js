@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { Mail, Lock, User, Eye, EyeOff, UserPlus } from 'lucide-react';
-import { toast } from 'react-hot-toast';
-import { useAuth } from '../hooks/useAuth';
-import LoadingSpinner from '../components/common/LoadingSpinner';
+import { Eye, EyeOff, Lock, Mail, User, UserPlus } from "lucide-react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { Link, Navigate } from "react-router-dom";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
   const { register, user } = useAuth();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    fullName: ''
+    email: "",
+    password: "",
+    confirmPassword: "",
+    fullName: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const Register = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -33,27 +33,33 @@ const Register = () => {
     setLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
-      toast.error('Las contraseñas no coinciden');
+      toast.error("Las contraseñas no coinciden");
       setLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
-      toast.error('La contraseña debe tener al menos 6 caracteres');
+      toast.error("La contraseña debe tener al menos 6 caracteres");
       setLoading(false);
       return;
     }
 
     try {
-      const result = await register(formData.email, formData.password, formData.fullName);
-      
+      const result = await register(
+        formData.email,
+        formData.password,
+        formData.fullName
+      );
+
       if (result.success) {
-        toast.success('¡Registro exitoso! Bienvenido a Un Millón de Predicadores');
+        toast.success(
+          "¡Registro exitoso! Bienvenido a Un Millón de Predicadores"
+        );
       } else {
-        toast.error(result.error || 'Error en el registro');
+        toast.error(result.error || "Error en el registro");
       }
     } catch (error) {
-      toast.error('Error en el registro');
+      toast.error("Error en el registro");
     } finally {
       setLoading(false);
     }
@@ -63,9 +69,7 @@ const Register = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-white">
-            Crear Cuenta
-          </h2>
+          <h2 className="mt-6 text-3xl font-bold text-white">Crear Cuenta</h2>
           <p className="mt-2 text-sm text-gray-300">
             Únete a miles de predicadores en formación
           </p>
@@ -74,7 +78,10 @@ const Register = () => {
         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-2xl border border-white/20">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="fullName"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Nombre Completo
               </label>
               <div className="relative">
@@ -93,7 +100,10 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Correo Electrónico
               </label>
               <div className="relative">
@@ -113,7 +123,10 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Contraseña
               </label>
               <div className="relative">
@@ -121,7 +134,7 @@ const Register = () => {
                 <input
                   id="password"
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   required
                   value={formData.password}
                   onChange={handleChange}
@@ -143,7 +156,10 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Confirmar Contraseña
               </label>
               <div className="relative">
@@ -181,7 +197,7 @@ const Register = () => {
 
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-300">
-              ¿Ya tienes una cuenta?{' '}
+              ¿Ya tienes una cuenta?{" "}
               <Link
                 to="/login"
                 className="font-medium text-blue-300 hover:text-blue-200 transition-colors"

@@ -58,19 +58,15 @@ const AIAssistants = () => {
     if (type && assistants[type]) {
       setSelectedAssistant(type);
     }
-  }, [assistants]);
+  }, [type]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(
-    () => {
-      loadConversationHistory();
-    },
-    [selectedAssistant],
-    [loadConversationHistory]
-  );
+  useEffect(() => {
+    loadConversationHistory();
+  }, [selectedAssistant]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

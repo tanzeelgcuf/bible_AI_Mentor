@@ -21,8 +21,8 @@ const Dashboard = () => {
             ¡Bienvenido, {user?.full_name}!
           </h1>
           <p className="text-lg opacity-90">
-            Continúa tu formación ministerial con nuestros recursos y asistentes ministeriales.
-            
+            Continúa tu formación ministerial con nuestros recursos y asistentes
+            de IA
           </p>
         </div>
 
@@ -37,7 +37,7 @@ const Dashboard = () => {
                 <MessageCircle className="w-6 h-6 text-blue-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900">
-                Asistentes Ministeriales
+                Asistentes de IA
               </h3>
             </div>
             <p className="text-gray-600">

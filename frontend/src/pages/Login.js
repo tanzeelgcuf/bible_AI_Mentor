@@ -51,51 +51,57 @@ const Login = () => {
     setLoading(true);
     try {
       // Send Facebook data to backend for authentication
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/auth/facebook`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          facebook_id: userData.id,
-          access_token: userData.accessToken,
-          email: userData.email,
-          full_name: userData.name
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL || "http://localhost:8000/api"}/auth/facebook`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            facebook_id: userData.id,
+            access_token: userData.accessToken,
+            email: userData.email,
+            full_name: userData.name,
+          }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('access_token', data.access_token);
-        
+        localStorage.setItem("access_token", data.access_token);
+
         // Get user data and update auth context
-        const userResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/auth/me`, {
-          headers: {
-            'Authorization': `Bearer ${data.access_token}`
+        const userResponse = await fetch(
+          `${process.env.REACT_APP_API_URL || "http://localhost:8000/api"}/auth/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${data.access_token}`,
+            },
           }
-        });
-        
+        );
+
         if (userResponse.ok) {
           const userData = await userResponse.json();
           // Update auth context here if needed
-          toast.success('¡Bienvenido! Iniciaste sesión con Facebook');
-          window.location.href = '/dashboard'; // Force reload to update auth context
+          toast.success("¡Bienvenido! Iniciaste sesión con Facebook");
+          window.location.href = "/dashboard"; // Force reload to update auth context
         }
       } else {
         const error = await response.json();
-        toast.error(error.detail || 'Error al iniciar sesión con Facebook');
+        toast.error(error.detail || "Error al iniciar sesión con Facebook");
       }
     } catch (error) {
-      console.error('Facebook login error:', error);
-      toast.error('Error al iniciar sesión con Facebook');
+      console.error("Facebook login error:", error);
+      toast.error("Error al iniciar sesión con Facebook");
     } finally {
       setLoading(false);
     }
   };
 
   const handleFacebookError = (error) => {
-    console.error('Facebook login error:', error);
-    toast.error('Error al iniciar sesión con Facebook');
+    console.error("Facebook login error:", error);
+    toast.error("Error al iniciar sesión con Facebook");
   };
 
   return (

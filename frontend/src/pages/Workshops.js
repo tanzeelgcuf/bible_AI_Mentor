@@ -151,8 +151,8 @@ const Workshops = () => {
                     isCompleted
                       ? "bg-gradient-to-r from-green-500 to-emerald-500"
                       : isLocked
-                      ? "bg-gradient-to-r from-gray-400 to-gray-500"
-                      : "bg-gradient-to-r from-blue-500 to-purple-500"
+                        ? "bg-gradient-to-r from-gray-400 to-gray-500"
+                        : "bg-gradient-to-r from-blue-500 to-purple-500"
                   } text-white`}
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -194,8 +194,8 @@ const Workshops = () => {
                         isLocked
                           ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                           : isCompleted
-                          ? "bg-green-100 text-green-700 hover:bg-green-200"
-                          : "bg-blue-500 text-white hover:bg-blue-600"
+                            ? "bg-green-100 text-green-700 hover:bg-green-200"
+                            : "bg-blue-500 text-white hover:bg-blue-600"
                       }`}
                       onClick={(e) => isLocked && e.preventDefault()}
                     >
@@ -203,8 +203,8 @@ const Workshops = () => {
                       {isCompleted
                         ? "Revisar"
                         : isLocked
-                        ? "Bloqueado"
-                        : "Comenzar"}
+                          ? "Bloqueado"
+                          : "Comenzar"}
                     </Link>
 
                     {!isLocked && !isCompleted && (

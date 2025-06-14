@@ -8,12 +8,7 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-
-// Components
-import Footer from "./components/common/Footer";
-import LoadingSpinner from "./components/common/LoadingSpinner";
-import Navbar from "./components/common/Navbar";
-
+import "./App.css";
 // Pages
 import AIAssistants from "./pages/AIAssistants";
 import Dashboard from "./pages/Dashboard";

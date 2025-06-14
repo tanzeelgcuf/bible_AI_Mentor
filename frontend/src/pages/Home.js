@@ -1,229 +1,243 @@
-// frontend/src/pages/Home.js
-import {
-  ArrowRight,
-  BookOpen,
-  Heart,
-  MessageCircle,
-  Users,
-} from "lucide-react";
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 min-h-screen">
-      {/* Hero Section */}
-      <div className="container mx-auto px-6 py-16 text-center text-white">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            Bienvenido a<br />
-            Un Millón de Predicadores
-          </h1>
-
-          <p className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed">
-            Plataforma educativa con inteligencia artificial para entrenar
-            predicadores hispanos con herramientas avanzadas, talleres
-            interactivos y asistentes virtuales especializados.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-            <Link
-              to="/register"
-              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center gap-2"
-            >
-              Comenzar Ahora <ArrowRight className="w-5 h-5" />
+    <div className="home">
+      {/* Navigation */}
+      <nav className="navigation">
+        <div className="nav-container">
+          <div className="nav-brand">
+            <span className="nav-icon">📖</span>
+            <span className="nav-title">Un Millón de Predicadores</span>
+          </div>
+          <div className="nav-menu">
+            <Link to="/" className="nav-link">
+              Home
             </Link>
+            <Link to="/attendees" className="nav-link">
+              Attendees
+            </Link>
+            <Link to="/workshops" className="nav-link">
+              IA Workshops
+            </Link>
+            <Link to="/donations" className="nav-link">
+              Donations
+            </Link>
+          </div>
+          <div className="nav-auth">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+            <Link to="/register" className="nav-link">
+              Register
+            </Link>
+          </div>
+          <div className="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
 
-            <Link
-              to="/login"
-              className="border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-            >
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-container">
+          <h1 className="hero-title">
+            Bienvenido a<br />
+            Un Millón de
+            <br />
+            Predicadores
+          </h1>
+          <p className="hero-subtitle">
+            Forma parte de una comunidad que está revolucionando la manera de
+            compartir el Evangelio. Recibe herramientas prácticas,
+            acompañamiento personalizado y entrenamiento profundo para cumplir
+            tu llamado con excelencia. ¡Es tu momento de crecer, predicar con
+            poder y transformar vidas!
+          </p>
+          <div className="hero-buttons">
+            <Link to="/register" className="btn btn-primary">
+              Comenzar Ahora →
+            </Link>
+            <Link to="/login" className="btn btn-secondary">
               Iniciar Sesión
             </Link>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="bg-white/10 backdrop-blur-lg">
-        <div className="container mx-auto px-6 py-20">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">
-            Características Principales
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* AI Assistants */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-8 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                3 Asistentes IA
-              </h3>
-              <p className="text-gray-200">
-                Mentor Bíblico, Entrenador de Sermones y Guía de Exégesis
-                especializados
+      <section className="features">
+        <div className="features-container">
+          <h2 className="features-title">Características Principales</h2>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon chat-icon">💬</div>
+              <h3>3 Asistentes Ministeriales</h3>
+              <p>
+                Mentor Bíblico, Entrenador de Sermones y Guía de Exégesis que te
+                acompañan en cada paso de tu preparación.
               </p>
             </div>
 
-            {/* Workshops */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-8 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BookOpen className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">21 Talleres</h3>
-              <p className="text-gray-200">
-                Módulos interactivos de capacitación pastoral y homilética
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon book-icon">📚</div>
+              <h3>21 Talleres</h3>
+              <p>Módulos interactivos de capacitación pastoral y homilética</p>
             </div>
 
-            {/* Community */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-8 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Comunidad</h3>
-              <p className="text-gray-200">
-                Conecta con otros predicadores y comparte experiencias
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon community-icon">👥</div>
+              <h3>Comunidad</h3>
+              <p>Conecta con otros predicadores y comparte experiencias</p>
             </div>
 
-            {/* Donations */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-8 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-gradient-to-r from-red-500 to-rose-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Donaciones</h3>
-              <p className="text-gray-200">
-                Apoya nuestra misión de entrenar un millón de predicadores
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon heart-icon">❤️</div>
+              <h3>Donaciones</h3>
+              <p>Apoya nuestra misión de entrenar un millón de predicadores</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* AI Assistants Preview */}
-      <div className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">
-          Nuestros Asistentes de IA
-        </h2>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Bible Mentor */}
-          <div className="bg-gradient-to-br from-blue-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-500/30">
-            <div className="bg-blue-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <BookOpen className="w-10 h-10 text-white" />
+      {/* AI Assistants Section */}
+      <section className="ai-assistants">
+        <div className="ai-container">
+          <h2 className="ai-title">Nuestros Asistentes de IA</h2>
+          <div className="ai-grid">
+            <div className="ai-card">
+              <div className="ai-icon mentor-icon">📖</div>
+              <h3>Mentor Bíblico</h3>
+              <p>
+                Orientación bíblica profunda, interpretación culturalmente
+                relevante y consejos pastorales sabios basados en las
+                Escrituras.
+              </p>
+              <ul className="ai-features">
+                <li>• Búsqueda de pasajes bíblicos</li>
+                <li>• Análisis de contexto</li>
+                <li>• Insights teológicos</li>
+                <li>• Aplicación cultural hispana</li>
+              </ul>
             </div>
-            <h3 className="text-2xl font-bold text-white text-center mb-4">
-              Mentor Bíblico
-            </h3>
-            <p className="text-gray-200 text-center mb-6">
-              Orientación bíblica profunda, interpretación culturalmente
-              relevante y consejos pastorales sabios basados en las Escrituras.
-            </p>
-            <ul className="text-gray-300 space-y-2">
-              <li>• Búsqueda de pasajes bíblicos</li>
-              <li>• Análisis de contexto</li>
-              <li>• Insights teológicos</li>
-              <li>• Aplicación cultural hispana</li>
-            </ul>
-          </div>
 
-          {/* Sermon Coach */}
-          <div className="bg-gradient-to-br from-green-600/30 to-green-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-500/30">
-            <div className="bg-green-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <MessageCircle className="w-10 h-10 text-white" />
+            <div className="ai-card">
+              <div className="ai-icon coach-icon">💬</div>
+              <h3>Entrenador de Sermones</h3>
+              <p>
+                Mejora la estructura de tus sermones, técnicas de comunicación y
+                engagement con tu audiencia hispana.
+              </p>
+              <ul className="ai-features">
+                <li>• Creación de esquemas</li>
+                <li>• Técnicas de oratoria</li>
+                <li>• Engagement de audiencia</li>
+                <li>• Adaptación cultural</li>
+              </ul>
             </div>
-            <h3 className="text-2xl font-bold text-white text-center mb-4">
-              Entrenador de Sermones
-            </h3>
-            <p className="text-gray-200 text-center mb-6">
-              Mejora la estructura de tus sermones, técnicas de comunicación y
-              engagement con tu audiencia hispana.
-            </p>
-            <ul className="text-gray-300 space-y-2">
-              <li>• Creación de esquemas</li>
-              <li>• Técnicas de oratoria</li>
-              <li>• Engagement de audiencia</li>
-              <li>• Adaptación cultural</li>
-            </ul>
-          </div>
 
-          {/* Exegesis Guide */}
-          <div className="bg-gradient-to-br from-purple-600/30 to-purple-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30">
-            <div className="bg-purple-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Users className="w-10 h-10 text-white" />
+            <div className="ai-card">
+              <div className="ai-icon guide-icon">👥</div>
+              <h3>Guía de Exégesis</h3>
+              <p>
+                Análisis profundo de textos bíblicos con contexto histórico,
+                idiomas originales y aplicaciones prácticas.
+              </p>
+              <ul className="ai-features">
+                <li>• Análisis de idiomas originales</li>
+                <li>• Contexto histórico</li>
+                <li>• Comentarios académicos</li>
+                <li>• Aplicación práctica</li>
+              </ul>
             </div>
-            <h3 className="text-2xl font-bold text-white text-center mb-4">
-              Guía de Exégesis
-            </h3>
-            <p className="text-gray-200 text-center mb-6">
-              Análisis profundo de textos bíblicos con contexto histórico,
-              idiomas originales y aplicaciones prácticas.
-            </p>
-            <ul className="text-gray-300 space-y-2">
-              <li>• Análisis de idiomas originales</li>
-              <li>• Contexto histórico</li>
-              <li>• Comentarios académicos</li>
-              <li>• Aplicación práctica</li>
-            </ul>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Call to Action */}
-      <div className="bg-gradient-to-r from-orange-600 to-red-600">
-        <div className="container mx-auto px-6 py-16 text-center">
-          <h2 className="text-4xl font-bold text-white mb-8">
-            ¿Listo para transformar tu ministerio?
-          </h2>
-          <p className="text-xl text-orange-100 mb-12 max-w-2xl mx-auto">
+      {/* CTA Section */}
+      <section className="cta">
+        <div className="cta-container">
+          <h2>¿Listo para transformar tu ministerio?</h2>
+          <p>
             Únete a miles de predicadores que ya están utilizando nuestra
             plataforma para mejorar sus sermones y ministerios.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              to="/register"
-              className="bg-white text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
+          <div className="cta-buttons">
+            <Link to="/register" className="btn btn-white">
               Registrarse Gratis
             </Link>
-
-            <Link
-              to="/donations"
-              className="border-2 border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-            >
+            <Link to="/donations" className="btn btn-outline">
               Apoyar la Misión
             </Link>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Stats Section */}
-      <div className="bg-white/5 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-yellow-400 mb-2">1M+</div>
-              <div className="text-gray-300">Meta de Predicadores</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-yellow-400 mb-2">21</div>
-              <div className="text-gray-300">Talleres Disponibles</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-yellow-400 mb-2">3</div>
-              <div className="text-gray-300">Asistentes de IA</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-yellow-400 mb-2">
-                24/7
-              </div>
-              <div className="text-gray-300">Disponibilidad</div>
-            </div>
+      <section className="stats">
+        <div className="stats-container">
+          <div className="stat">
+            <div className="stat-number">1M+</div>
+            <div className="stat-label">Meta de Predicadores</div>
+          </div>
+          <div className="stat">
+            <div className="stat-number">21</div>
+            <div className="stat-label">Talleres Disponibles</div>
+          </div>
+          <div className="stat">
+            <div className="stat-number">3</div>
+            <div className="stat-label">Asistentes de IA</div>
+          </div>
+          <div className="stat">
+            <div className="stat-number">24/7</div>
+            <div className="stat-label">Disponibilidad</div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-section">
+            <h3>Un Millón de Predicadores</h3>
+            <p>
+              Capacitando predicadores hispanos con inteligencia artificial y
+              recursos educativos de calidad para transformar comunidades.
+            </p>
+            <p className="nonprofit">❤️ Organización sin fines de lucro</p>
+          </div>
+          <div className="footer-section">
+            <h4>Enlaces</h4>
+            <ul>
+              <li>
+                <a href="#about">Acerca de</a>
+              </li>
+              <li>
+                <a href="#contact">Contacto</a>
+              </li>
+              <li>
+                <a href="#privacy">Privacidad</a>
+              </li>
+              <li>
+                <a href="#terms">Términos</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h4>Contacto</h4>
+            <p>📧 info@unmillondepredicadores.org</p>
+            <p>🌐 Global</p>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>
+            © 2024 Un Millón de Predicadores. Todos los derechos reservados.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
