@@ -3,6 +3,7 @@ import { Eye, EyeOff, Lock, LogIn, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, Navigate } from "react-router-dom";
+import FacebookLogin from "../components/auth/FacebookLogin";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useAuth } from "../hooks/useAuth";
 
@@ -44,6 +45,57 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFacebookSuccess = async (userData) => {
+    setLoading(true);
+    try {
+      // Send Facebook data to backend for authentication
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/auth/facebook`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          facebook_id: userData.id,
+          access_token: userData.accessToken,
+          email: userData.email,
+          full_name: userData.name
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access_token);
+        
+        // Get user data and update auth context
+        const userResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/auth/me`, {
+          headers: {
+            'Authorization': `Bearer ${data.access_token}`
+          }
+        });
+        
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          // Update auth context here if needed
+          toast.success('¡Bienvenido! Iniciaste sesión con Facebook');
+          window.location.href = '/dashboard'; // Force reload to update auth context
+        }
+      } else {
+        const error = await response.json();
+        toast.error(error.detail || 'Error al iniciar sesión con Facebook');
+      }
+    } catch (error) {
+      console.error('Facebook login error:', error);
+      toast.error('Error al iniciar sesión con Facebook');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFacebookError = (error) => {
+    console.error('Facebook login error:', error);
+    toast.error('Error al iniciar sesión con Facebook');
   };
 
   return (
@@ -167,20 +219,11 @@ const Login = () => {
 
             {/* Facebook Login Button */}
             <div className="mt-6">
-              <button
-                type="button"
-                className="w-full flex justify-center items-center py-3 px-4 border border-gray-300/30 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
-                onClick={() => toast.info("Facebook login próximamente")}
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-                Continuar con Facebook
-              </button>
+              <FacebookLogin
+                onSuccess={handleFacebookSuccess}
+                onError={handleFacebookError}
+                buttonText="Continuar con Facebook"
+              />
             </div>
           </div>
 
